@@ -1,7 +1,7 @@
 class FrontController{
     static home = async(req,res)=>{
         try{
-            res.send("home page")
+            res.render("home")
         }catch(error)
         {
             console.log(error)
@@ -9,7 +9,7 @@ class FrontController{
     }
     static about =async(req,res)=>{
         try{
-            res.send("about page")
+            res.render("about")
         }catch(error)
         {
             console.log(error)
@@ -17,7 +17,7 @@ class FrontController{
     }
     static login =async(req,res)=>{
         try{
-            res.send("login page")
+            res.render("login")
         }catch(error)
         {
             console.log(error)
@@ -25,7 +25,7 @@ class FrontController{
     }
     static register =async(req,res)=>{
         try{
-            res.send("register page")
+            res.render("register")
         }catch(error)
         {
             console.log(error)
@@ -33,7 +33,7 @@ class FrontController{
     }
     static contact =async(req,res)=>{
         try{
-            res.send("contact page")
+            res.render("contact")
         }catch(error)
         {
             console.log(error)

@@ -3,9 +3,13 @@ const app = express()
 const port = 3000
 const web = require('./routes/web')
 
+//html css set
+app.set('view engine','ejs')
+
+
+
 //routeing
 app.use('/',web)
-
 
 //server create
 app.listen(port,() =>{console.log(`server start localhost: ${port}`)})
