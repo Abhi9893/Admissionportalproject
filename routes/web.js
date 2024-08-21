@@ -3,9 +3,9 @@ const FrontController = require("../controllers/FrontController")
 const route = express.Router()
 
 //routeing
-route.get('/',FrontController.home)
+route.get('/home',FrontController.home)
 route.get('/about',FrontController.about)
-route.get('/login',FrontController.login)
+route.get('/',FrontController.login)
 route.get('/register',FrontController.register)
 route.get('/contact',FrontController.contact)
 
