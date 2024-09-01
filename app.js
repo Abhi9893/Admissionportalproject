@@ -14,6 +14,8 @@ app.use(express.static('public'))
 //connect db
 connectDb()
 
+app.use(express.urlencoded({extended:true}));
+
 
 //routeing
 app.use('/',web)

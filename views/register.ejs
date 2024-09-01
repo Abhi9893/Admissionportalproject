@@ -13,7 +13,7 @@
 
                 <!-- Column-2 -->
                 <div class="col-lg-6 bglogin p-4">
-                    <form>
+                    <form method="post" action="/userInsert">
                         <!-- logo -->
                         <center>
                             <img class="mb-4 rounded-circle" src="./Images/SignUpImage.jpeg" alt="Sign Up Image" width="20%" height="20%">
@@ -26,7 +26,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-2 text-center bg-secondary rounded text-light fw-light my-auto p-2">User Name</div>
                             <div class="col-lg-10">
-                                <input class="form-control text-capitalize" type="text" placeholder="Enter your name" required>
+                                <input name="n" class="form-control text-capitalize" type="text" placeholder="Enter your name" required>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                         <div class="row mb-3">
                             <div class="col-lg-2 text-center bg-secondary rounded text-light fw-light my-auto p-2">Email</div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="email" placeholder="name@example.com" required>
+                                <input name="e" class="form-control" type="email" placeholder="name@example.com" required>
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-2 text-center bg-secondary rounded text-light fw-light my-auto p-2">Password</div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="password" required>
+                                <input name="p" class="form-control" type="password" required>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                         <div class="row mb-4">
                             <div class="col-lg-3 text-center bg-secondary rounded text-light fw-light my-auto p-2">Confirm Password</div>
                             <div class="col-lg-9">
-                                <input class="form-control" type="password" required>
+                                <input name="cp" class="form-control" type="password" required>
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@
 
                         <!-- Button (Login) -->
                         <center>
-                            <button class="btn btn-primary mb-5 btn-lg">Register</button>
+                            <button type="submit" class="btn btn-primary mb-5 btn-lg">Register</button>
                         </center>
                         
                     </form>

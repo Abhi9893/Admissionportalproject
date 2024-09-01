@@ -1,3 +1,4 @@
+const userModal = require('../moduls/user')
 class FrontController{
     static home = async(req,res)=>{
         try{
@@ -34,6 +35,14 @@ class FrontController{
     static contact =async(req,res)=>{
         try{
             res.render("contact")
+        }catch(error)
+        {
+            console.log(error)
+        }
+    }
+    static userInsert =async(req,res)=>{
+        try{
+            console.log(req.body) 
         }catch(error)
         {
             console.log(error)
