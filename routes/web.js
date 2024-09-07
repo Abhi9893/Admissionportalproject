@@ -17,6 +17,10 @@ route.post('/userInsert',FrontController.userInsert)
 route.get('/admin/deshboard',AdminController.deshboard)
 route.get('/admin/StudentDisplay',AdminController.display)
 route.get('/admin/addUser',AdminController.adduser)
+route.get('/admin/viewUser/:id',AdminController.viewUser)
+route.get('/admin/editUser/:id',AdminController.editUser)
+route.post('/admin/updateUser/:id',AdminController.updateUser)
+route.get('/admin/deleteUser/:id',AdminController.deleteUser)
 
 
 

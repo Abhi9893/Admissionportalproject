@@ -37,24 +37,38 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                  <% d.forEach((item)=>{%>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
+                  <td><%= item._id %></td>
+                  <td><%= item.name %></td>
+                  <td><%= item.email %></td>
+                  <td><%= item.password %></td>
+                  <td>
+                    <a href="/admin/viewUser/<%= item._id%>" class="btn btn-info">View</a>
+                    <a href="/admin/editUser/<%= item._id%>" class="btn btn-success">Edit</a>
+                    <a href="/admin/deleteUser/<%= item._id%>" class="btn btn-danger">Delete</a>
                   </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
                 </tr>
-                
+              <% }) %>
+                </tbody>
+                <tfoot>
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
                 </tfoot>
               </table>
             </div>
