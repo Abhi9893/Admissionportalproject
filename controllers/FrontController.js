@@ -1,5 +1,5 @@
 const UserModel = require('../moduls/user')
-const userModal = require('../moduls/user')
+
 class FrontController{
     static home = async(req,res)=>{
         try{
@@ -43,15 +43,16 @@ class FrontController{
     }
     static userInsert =async(req,res)=>{
         try{
+            console.log(req.body)
             // console.log(req.body) 
-            const{n,e,p,cp}= req.body
-            const result = new UserModel({
-                name:n,
-                email:e,
-                password:p
-            })
-            await result.save()
-            res.redirect('/') //route ka url
+            // const{n,e,p,cp}= req.body
+            // const result = new UserModel({
+            //     name:n,
+            //     email:e,
+            //     password:p
+            // })
+            // await result.save()
+            // res.redirect('/') //route ka url
 
         }catch(error)
         {

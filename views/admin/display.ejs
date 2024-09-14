@@ -1,63 +1,71 @@
 <%-include('./header.ejs')%>
-<%-include('./sidebar.ejs')%>
+  <%-include('./sidebar.ejs')%>
 
-  
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="card">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Starter Page</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="card">
             <div class="card-header">
               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addstudent">
-               Add Student
+                Add Student
               </button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Action</th>
-                </tr>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                  </tr>
                 </thead>
                 <tbody>
                   <% d.forEach((item)=>{%>
-                <tr>
-                  <td><%= item._id %></td>
-                  <td><%= item.name %></td>
-                  <td><%= item.email %></td>
-                  <td><%= item.password %></td>
-                  <td>
-                    <a href="/admin/viewUser/<%= item._id%>" class="btn btn-info">View</a>
-                    <a href="/admin/editUser/<%= item._id%>" class="btn btn-success">Edit</a>
-                    <a href="/admin/deleteUser/<%= item._id%>" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-              <% }) %>
+                    <tr>
+                      <td>
+                        <%= item._id %>
+                      </td>
+                      <td>
+                        <%= item.name %>
+                      </td>
+                      <td>
+                        <%= item.email %>
+                      </td>
+                      <td>
+                        <%= item.password %>
+                      </td>
+                      <td>
+                        <a href="/admin/viewUser/<%= item._id%>" class="btn btn-info">View</a>
+                        <a href="/admin/editUser/<%= item._id%>" class="btn btn-success">Edit</a>
+                        <a href="/admin/deleteUser/<%= item._id%>" class="btn btn-danger">Delete</a>
+                      </td>
+                    </tr>
+                    <% }) %>
                 </tbody>
                 <tfoot>
                   <thead>
@@ -68,58 +76,65 @@
                       <th>Password</th>
                       <th>Action</th>
                     </tr>
-                    </thead>
+                  </thead>
                 </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <div class="modal fade" id="addstudent">  
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="">
-            <div class="form-group">
-              <label for="">Name:</label>
-              <input type="text" name="" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="">Email:</label>
-              <input type="email" name="" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="">Password:</label>
-              <input type="text" name="Password" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="">Phone:</label>
-              <input type="text" name="phone" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-info">Submit</button>
-          </form>
-          
-
-
-        </div>
-       
+        </div><!-- /.container-fluid -->
       </div>
-      <!-- /.modal-content -->
+      <!-- /.content -->
     </div>
-    <!-- /.modal-dialog -->
-  </div>
-  <!-- /.modal -->
+    <!-- /.content-wrapper -->
 
-<%-include('./footer.ejs')%>
+    <div class="modal fade" id="addstudent">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Default Modal</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <form action="/admin/userInsert" method="post">
+              <div class="card-body">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Name</label>
+                      <input type="text" name="n" class="form-control" 
+                          placeholder="Enter Name">
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" name="e" class="form-control" 
+                          placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" name="p" class="form-control" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">confirm-Password</label>
+                    <input type="confirm-password" name="cp" class="form-control" >
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </form>
+
+
+          </div>
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <%-include('./footer.ejs')%>

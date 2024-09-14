@@ -12,8 +12,8 @@ class AdminController {
     static display = async (req, res) => {
         try {
             const data = await UserModuls.find()
-            console.log(data)
-            res.render('admin/display',{d:data});
+            // console.log(data)
+            res.render('admin/display', { d: data });
         } catch (error) {
             console.log(error)
         }
@@ -32,7 +32,7 @@ class AdminController {
             // console.log(id)
             const data = await UserModuls.findById(id)
             // console.log(data)
-            res.render('admin/viewUser',{d:data});
+            res.render('admin/viewUser', { d: data });
         } catch (error) {
             console.log(error)
         }
@@ -40,10 +40,10 @@ class AdminController {
     static editUser = async (req, res) => {
         try {
             const id = req.params.id;
-           // console.log(id)
+            // console.log(id)
             const data = await UserModuls.findById(id)
             //console.log(data)
-            res.render('admin/editUser',{d:data});
+            res.render('admin/editUser', { d: data });
         } catch (error) {
             console.log(error)
         }
@@ -51,15 +51,15 @@ class AdminController {
     static updateUser = async (req, res) => {
         try {
             const id = req.params.id;
-            const{n,e,p} = req.body
+            const { n, e, p } = req.body
             // console.log(id)
-            const data = await UserModuls.findByIdAndUpdate(id,{
-                name:n,
-                email:e,
-                password:p
+            const data = await UserModuls.findByIdAndUpdate(id, {
+                name: n,
+                email: e,
+                password: p
             })
             res.redirect("/admin/StudentDisplay") //route
-           
+
         } catch (error) {
             console.log(error)
         }
@@ -67,13 +67,29 @@ class AdminController {
     static deleteUser = async (req, res) => {
         try {
             const id = req.params.id;
-            const{n,e,p} = req.body
+            const { n, e, p } = req.body
             // console.log(id)
             const data = await UserModuls.findByIdAndDelete(id)
             res.redirect("/admin/StudentDisplay") //route
-           
+
         } catch (error) {
             console.log(error)
+        }
+    }
+    static userInsert = async (req, res) => {
+        try {
+            //console.log(req.body);
+            const { n, e, p } = req.body
+            const result = new UserModuls({
+                name: n,
+                email: e,
+                password: p
+            })
+            await result.save()
+            res.redirect('/admin/studentDisplay') // route ka url
+
+        } catch (error) {
+            console.log(error);
         }
     }
 
