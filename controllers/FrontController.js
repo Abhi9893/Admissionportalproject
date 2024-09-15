@@ -35,7 +35,7 @@ class FrontController{
     }
     static register =async(req,res)=>{
         try{
-            res.render("register")
+            res.render("register",{message:req.flash('error')});
         }catch(error)
         {
             console.log(error)
@@ -51,25 +51,58 @@ class FrontController{
     }
     static userInsert =async(req,res)=>{
         try{
-            //res.send("contact page")
-            console.log(req.files)
-            // console.log(req.body) 
-            const file = req.files.image
-            const imageUpload = await cloudinary.uploader.upload(file.tempFilePath,{folder:"profile"})
-            // console.log(imageUpload)
-            // console.log(file)
+            // //res.send("contact page")
+            // console.log(req.files)
+            // // console.log(req.body) 
+            // const file = req.files.image
+            // const imageUpload = await cloudinary.uploader.upload(file.tempFilePath,{folder:"profile"})
+            // // console.log(imageUpload)
+            // // console.log(file)
             const{n,e,p,cp}= req.body
-            const result = new UserModel({
-                name:n,
-                email:e,
-                password:p,
-                image:{
-                    public_id:imageUpload.public_id,
-                    url:imageUpload.secure_url
+            const user = await UserModel.find({email:e})
+            if(user){
+                req.flash('error','Email already Exit')
+                res.redirect('/register')
+            }else{
+                if(n && e && p && cp){
+                    if(p == cp){
+                        const result = new UserModel({
+                            name: n,
+                            email: e,
+                            password: p,
+                            image:{
+                                public_id: imageUpload.public_id,
+                                url: imageUpload.secure_url,
+                            },
+                        });
+                        // To save data 
+                        await result.save();
+                        res.redirect('/')
+
+                        //console.log(userdata)
+                    }else{
+                        req.flash("error","password & Confirm password must be same.");
+                        res.redirect("/register");
+                    }
+
+                }else{
+                    req.flash("error","All Fields are Reqired.");
+                    res.redirect("/register");
                 }
-            })
-            await result.save()
-            res.redirect('/') //route ka url
+            }
+            
+
+            // const result = new UserModel({
+            //     name:n,
+            //     email:e,
+            //     password:p,
+            //     image:{
+            //         public_id:imageUpload.public_id,
+            //         url:imageUpload.secure_url
+            //     }
+            // })
+            // await result.save()
+            // res.redirect('/') //route ka url
 
         }catch(error)
         {

@@ -21,6 +21,10 @@
 
                         <!-- Heading (Register Here) -->
                         <h1 class="mb-5 text-center">Register Here</h1>
+                        <% if(message.length>0){ %>
+                            <div class="alert alert-danger"><%= message %></div>
+
+                       <% } %>
 
                         <!-- User Name -->
                         <div class="row mb-4">

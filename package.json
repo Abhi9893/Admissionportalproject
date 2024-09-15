@@ -10,9 +10,11 @@
   "description": "",
   "dependencies": {
     "cloudinary": "^2.4.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-fileupload": "^1.5.1",
+    "express-session": "^1.18.0",
     "mongoose": "^8.5.3"
   }
 }
