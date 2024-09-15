@@ -41,6 +41,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>image</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -60,6 +61,9 @@
                         <%= item.password %>
                       </td>
                       <td>
+                        <img src="<%= item.image.url %>" width="50px" alt="">
+                      </td>
+                      <td>
                         <a href="/admin/viewUser/<%= item._id%>" class="btn btn-info">View</a>
                         <a href="/admin/editUser/<%= item._id%>" class="btn btn-success">Edit</a>
                         <a href="/admin/deleteUser/<%= item._id%>" class="btn btn-danger">Delete</a>
@@ -74,6 +78,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Password</th>
+                      <th>Image</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -99,33 +104,39 @@
             </button>
           </div>
           <div class="modal-body">
-          <form action="/admin/userInsert" method="post">
+            <form action="/admin/userInsert" method="post">
               <div class="card-body">
-                  <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
-                      <input type="text" name="n" class="form-control" 
-                          placeholder="Enter Name">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" name="n" class="form-control" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="e" class="form-control" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" name="p" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">confirm-Password</label>
+                  <input type="confirm-password" name="cp" class="form-control">
+                </div>
+                <div class="row mb-4">
+                  <div class="col-lg-3 text-center bg-secondary rounded text-light fw-light my-auto p-2">Profile Image</div>
+                  <div class="col-lg-9">
+                      <input name="image" class="form-control" type="file" required>
                   </div>
-                  <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" name="e" class="form-control" 
-                          placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" name="p" class="form-control" >
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">confirm-Password</label>
-                    <input type="confirm-password" name="cp" class="form-control" >
+                </div>
+              
+
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-          </form>
+            </form>
 
 
           </div>
@@ -137,4 +148,4 @@
     </div>
     <!-- /.modal -->
 
-    <%-include('./footer.ejs')%>
+<%-include('./footer.ejs')%>

@@ -76,20 +76,31 @@ class AdminController {
             console.log(error)
         }
     }
-    static userInsert = async (req, res) => {
-        try {
-            //console.log(req.body);
-            const { n, e, p } = req.body
-            const result = new UserModuls({
-                name: n,
-                email: e,
-                password: p
+    static userInsert =async(req,res)=>{
+        try{
+            //res.send("contact page")
+            console.log(req.files)
+            // console.log(req.body) 
+            const file = req.files.image
+            const imageUpload = await cloudinary.uploader.upload(file.tempFilePath,{folder:"profile"})
+            // console.log(imageUpload)
+            // console.log(file)
+            const{n,e,p,cp}= req.body
+            const result = new UserModel({
+                name:n,
+                email:e,
+                password:p,
+                image:{
+                    public_id:imageUpload.public_id,
+                    url:imageUpload.secure_url
+                }
             })
             await result.save()
-            res.redirect('/admin/studentDisplay') // route ka url
+            res.redirect('/') //route ka url
 
-        } catch (error) {
-            console.log(error);
+        }catch(error)
+        {
+            console.log(error)
         }
     }
 

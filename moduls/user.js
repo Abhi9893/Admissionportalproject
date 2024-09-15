@@ -13,6 +13,16 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    image:{
+        public_id:{
+            type:String,
+            request:true,
+        },
+        url:{
+            type:String,
+            request:true,
+        }
+    },
     role:{
         type:String,
         default:'user'

@@ -12,14 +12,14 @@ app.set('view engine','ejs')
 //css image link
 app.use(express.static('public'))
 
-// //fileupload image
-// app.use(fileUpload({
-//     limits:{fileSize: 50 * 1024 * 1024},
-//     useTempFiles: true,
-// // //dir for window pc
-// //  tempFileDir: path.join(__dirname, '/.temp')
+//fileupload image
+app.use(fileUpload({
+    limits:{fileSize: 50 * 1024 * 1024},
+    useTempFiles: true,
+// //dir for window pc
+//  tempFileDir: path.join(__dirname, '/.temp')
 
-// }));
+}));
 
 //connect db
 connectDb()

@@ -1,4 +1,12 @@
 const UserModel = require('../moduls/user')
+const cloudinary = require('cloudinary').v2
+
+
+cloudinary.config({ 
+    cloud_name: 'dyblatmzo', 
+    api_key: '757875579268529', 
+    api_secret: 'OaD3lbfPxv_CrCd-pcIFiOtlDKw' // Click 'View API Keys' above to copy your API secret
+});
 
 class FrontController{
     static home = async(req,res)=>{
@@ -43,16 +51,25 @@ class FrontController{
     }
     static userInsert =async(req,res)=>{
         try{
-            console.log(req.body)
+            //res.send("contact page")
+            console.log(req.files)
             // console.log(req.body) 
-            // const{n,e,p,cp}= req.body
-            // const result = new UserModel({
-            //     name:n,
-            //     email:e,
-            //     password:p
-            // })
-            // await result.save()
-            // res.redirect('/') //route ka url
+            const file = req.files.image
+            const imageUpload = await cloudinary.uploader.upload(file.tempFilePath,{folder:"profile"})
+            // console.log(imageUpload)
+            // console.log(file)
+            const{n,e,p,cp}= req.body
+            const result = new UserModel({
+                name:n,
+                email:e,
+                password:p,
+                image:{
+                    public_id:imageUpload.public_id,
+                    url:imageUpload.secure_url
+                }
+            })
+            await result.save()
+            res.redirect('/') //route ka url
 
         }catch(error)
         {
