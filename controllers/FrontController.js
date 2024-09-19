@@ -27,7 +27,7 @@ class FrontController{
     }
     static login =async(req,res)=>{
         try{
-            res.render("login")
+            res.render("login",{msg:req.flash("success")});
         }catch(error)
         {
             console.log(error)
@@ -59,13 +59,20 @@ class FrontController{
             // // console.log(imageUpload)
             // // console.log(file)
             const{n,e,p,cp}= req.body
-            const user = await UserModel.find({email:e})
+            const user = await UserModel.findOne({email:e})
             if(user){
                 req.flash('error','Email already Exit')
                 res.redirect('/register')
             }else{
                 if(n && e && p && cp){
                     if(p == cp){
+                        const file = req.files.image
+                        const imageUpload = await cloudinary.uploader.upload(
+                            file.tempFilePath,
+                            {
+                                folder:"profile",
+                            }
+                        );
                         const result = new UserModel({
                             name: n,
                             email: e,
@@ -77,7 +84,8 @@ class FrontController{
                         });
                         // To save data 
                         await result.save();
-                        res.redirect('/')
+                        req.flash("success","Register Sucessfull Insert ! Plz Login");
+                        res.redirect('/');
 
                         //console.log(userdata)
                     }else{
