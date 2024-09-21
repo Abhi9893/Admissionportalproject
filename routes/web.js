@@ -13,6 +13,8 @@ route.get('/contact',FrontController.contact)
 //insert data
 route.post('/userInsert',FrontController.userInsert)
 
+route.post('/verifylogin',FrontController.verifylogin)
+
 //admincontroller
 route.get('/admin/deshboard',AdminController.deshboard)
 route.get('/admin/StudentDisplay',AdminController.display)

@@ -1,5 +1,6 @@
 const UserModel = require('../moduls/user')
 const cloudinary = require('cloudinary').v2
+const bcrypt = require('bcrypt')
 
 
 cloudinary.config({ 
@@ -27,7 +28,7 @@ class FrontController{
     }
     static login =async(req,res)=>{
         try{
-            res.render("login",{msg:req.flash("success")});
+            res.render("login",{msg:req.flash("success"), msg1:req.flash("error")});
         }catch(error)
         {
             console.log(error)
@@ -66,6 +67,7 @@ class FrontController{
             }else{
                 if(n && e && p && cp){
                     if(p == cp){
+                        const hashPassword = await bcrypt.hash(p, 10);
                         const file = req.files.image
                         const imageUpload = await cloudinary.uploader.upload(
                             file.tempFilePath,
@@ -76,7 +78,7 @@ class FrontController{
                         const result = new UserModel({
                             name: n,
                             email: e,
-                            password: p,
+                            password: hashPassword, 
                             image:{
                                 public_id: imageUpload.public_id,
                                 url: imageUpload.secure_url,
@@ -115,6 +117,31 @@ class FrontController{
         }catch(error)
         {
             console.log(error)
+        }
+    }
+    static verifylogin = async (req,res)=>{
+        try {
+
+            const {email, password} = req.body
+            // console.log(req.body)
+            const user = await UserModel.findOne({email:email})
+            console.log(user)
+            if(user != null){
+                const isMatch = await bcrypt.compare(password,user.password)
+                if(isMatch){
+                    //admin login
+                    res.redirect('/home')
+                }else{
+                    req.flash("error","email or password is not  vaild.")
+                    res.redirect("/")
+                }
+
+            }else{
+                req.flash("error", "you are not a registered user.")
+                res.redirect("/")
+            }
+        } catch (error) {
+           console.log(error) 
         }
     }
 }
