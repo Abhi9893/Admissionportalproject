@@ -1,6 +1,7 @@
 const UserModel = require('../moduls/user')
 const cloudinary = require('cloudinary').v2
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 cloudinary.config({ 
@@ -129,8 +130,13 @@ class FrontController{
             if(user != null){
                 const isMatch = await bcrypt.compare(password,user.password)
                 if(isMatch){
-                    //admin login
-                    res.redirect('/home')
+                 //token create
+                 var token = jwt.sign({ID: user._id},'dkjfc98adfsdbf878bch') 
+                //  console.log(token) 
+                res.cookie('token',token) 
+
+                //admin login
+                res.redirect('/home')
                 }else{
                     req.flash("error","email or password is not  vaild.")
                     res.redirect("/")
@@ -144,6 +150,15 @@ class FrontController{
            console.log(error) 
         }
     }
+    static logout =async(req,res)=>{
+        try{
+            res.redirect("/")
+        }catch(error)
+        {
+            console.log(error)
+        }
+    }
+
 }
 
 module.exports =FrontController
