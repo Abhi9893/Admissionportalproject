@@ -3,13 +3,14 @@ const FrontController = require("../controllers/FrontController")
 const AdminController = require("../controllers/admin/AdminController")
 const route = express.Router()
 const checkAuth = require("../middleware/checkAuth")
+const CourseController = require("../controllers/courseController")
 
 //routeing
 route.get('/home',checkAuth,FrontController.home)
-route.get('/about',FrontController.about)
+route.get('/about',checkAuth,FrontController.about)
 route.get('/',FrontController.login)
 route.get('/register',FrontController.register)
-route.get('/contact',FrontController.contact)
+route.get('/contact',checkAuth,FrontController.contact)
 
 //insert data
 route.post('/userInsert',FrontController.userInsert)
@@ -26,6 +27,9 @@ route.post('/admin/updateUser/:id',AdminController.updateUser)
 route.get('/admin/deleteUser/:id',AdminController.deleteUser) 
 route.post('/admin/userInsert',AdminController.userInsert)  
 
+
+//coursecontroller
+route.post('/courseInsert',checkAuth,CourseController.courseInsert)
 
 
 

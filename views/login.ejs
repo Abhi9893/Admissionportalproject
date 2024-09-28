@@ -1,4 +1,26 @@
-<%-include('./layout/header.ejs')%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login</title>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+
+<body>
 
     <!-- Login -->
     <section id="login" class="my-5">
@@ -13,7 +35,7 @@
 
                 <!-- Column-2 -->
                 <div class="col-lg-6 bglogin p-4">
-                    <form action="/verifylogin" method="post">
+                    <form action="/verifylogin" method="post" id="myvalidation">
                         <!-- logo -->
                         <center>
                             <img class="mb-4 rounded-circle" src="./Images/logo.jpeg" alt="logo" width="20%" height="20%">
@@ -35,7 +57,7 @@
                         <div class="row mb-3">
                             <div class="col-lg-2 text-center bg-secondary rounded text-light fw-light my-auto p-2">Email</div>
                             <div class="col-lg-10">
-                                <input class="form-control" name="email" type="email" placeholder="name@example.com" required>
+                                <input class="form-control" type="email" name="email" placeholder="name@example.com" required>
                             </div>
                         </div>
 
@@ -43,13 +65,13 @@
                         <div class="row mb-5">
                             <div class="col-lg-2 text-center bg-secondary rounded text-light fw-light my-auto p-2">Password</div>
                             <div class="col-lg-10">
-                                <input class="form-control" name="password" type="password" required>
+                                <input class="form-control" type="password" name="password" required>
                             </div>
                         </div>
 
                         <!-- Button (Login) -->
                         <center>
-                            <button type="submit" class="btn btn-primary mb-5 btn-lg">Login</button>
+                            <button class="btn btn-primary mb-5 btn-lg">Login</button>
                         </center>
                         
                         <!-- Register Now -->
@@ -64,4 +86,74 @@
     </section>
     <!-- End Login -->
 
-<%-include('./layout/footer.ejs')%>
+    <!-- Java Script Link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Java Script Link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+        $(function () {
+    
+            let $registerForm = $('#myvalidation')
+        
+            $registerForm.validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                    },
+                    
+        
+                },
+                messages:{   
+                    
+                    email: {
+                        required: "Email must be required",
+                        email: "invalid email"
+                    },
+                    password: {
+                        required: "Password must be required",
+                        minlength: 'min 6 digit',
+                    },
+                    
+                   
+                },
+                errorPlacement: function (error, element) {
+                    if (element.is(":radio")) {
+                        error.appendTo(element.parents(".gen"));
+                    } else {
+                        error.insertAfter(element)
+                    }
+                }
+        
+        
+            })
+        
+            jQuery.validator.addMethod("lettersOnly", function (value, element) {
+                return  /^[a-z," "]+$/i.test(value);
+            }, "Letters and spaces only please");
+        
+            jQuery.validator.addMethod("numericonly", function (value, element) {
+                return /^[0-9]+$/i.test(value);
+            }, "Please enternumber only.");
+        
+        
+        })</script>
+
+
+    
+</body>
+
+</html>

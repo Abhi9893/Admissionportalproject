@@ -13,7 +13,13 @@ cloudinary.config({
 class FrontController{
     static home = async(req,res)=>{
         try{
-            res.render("home")
+            const{name,image}= req.userData
+            res.render("home",{
+                n:name,
+                i:image
+            })
+
+            
         }catch(error)
         {
             console.log(error)
@@ -21,7 +27,11 @@ class FrontController{
     }
     static about =async(req,res)=>{
         try{
-            res.render("about")
+            const {name,image}= req.userData
+            res.render("about",{
+                n:name,
+                i:image
+            })
         }catch(error)
         {
             console.log(error)
@@ -45,7 +55,11 @@ class FrontController{
     }
     static contact =async(req,res)=>{
         try{
-            res.render("contact")
+            const {name,image}= req.userData
+            res.render("contact",{
+                n:name,
+                i:image
+            })
         }catch(error)
         {
             console.log(error)
@@ -126,7 +140,7 @@ class FrontController{
             const {email, password} = req.body
             // console.log(req.body)
             const user = await UserModel.findOne({email:email})
-            console.log(user)
+            // console.log(user)
             if(user != null){
                 const isMatch = await bcrypt.compare(password,user.password)
                 if(isMatch){
@@ -152,6 +166,7 @@ class FrontController{
     }
     static logout =async(req,res)=>{
         try{
+            res.clearCookie("token")
             res.redirect("/")
         }catch(error)
         {

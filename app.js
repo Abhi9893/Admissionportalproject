@@ -6,6 +6,9 @@ const { connect } = require('mongoose')
 const connectDb = require('./db/connectDb')
 const fileUpload = require('express-fileupload');
 
+const cookieparser = require('cookie-parser')
+app.use(cookieparser())
+
 //html css set
 app.set('view engine','ejs')
 

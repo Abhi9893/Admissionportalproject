@@ -3,14 +3,14 @@
     <!-- carousel -->
     <section id="carousel">
         <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-            <!-- <div class="carousel-indicators">
+             <!-- <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
                     aria-label="Slide 1" aria-current="true"></button>
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
                     class=""></button>
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
                     class=""></button>
-            </div> -->
+            </div>  -->
             
             <div class="carousel-inner">
                 <!-- item-1 -->
@@ -93,7 +93,7 @@
                             <div class="card-body text-center">
                                 <h2>B.Tech</h2>
                                 <p class="card-text">B.Tech is a professional undergraduate engineering degree</p>
-                                <button type="button" class="btn btn-info">Register</button>
+                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                             <div class="card-body text-center">
                                 <h2>BCA</h2>
                                 <p class="card-text">BCA is a three-year Bachelor's Degree in Computer Application</p>
-                                <button type="button" class="btn btn-info">Register</button>
+                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
                             </div>
                         </div>
                     </div>
@@ -118,13 +118,67 @@
                                 <h2>MCA</h2>
                                 <p class="card-text">MCA is a professional post-graduation degree in Computer
                                     Application</p>
-                                <button type="button" class="btn btn-info">Register</button>
+                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="aa">
+            <div class="modal-dialog mode-sm"> <!--modal-xl,sm,lg-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="model-title">login form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    
+                    </div><!--modal header end-->
+                    <div class="modal-body">
+                        <form action="/courseInsert" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                Name
+                                <input type="text" name="name" placeholder="Enter Your Name" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Email
+                                <input type="text" name="email" placeholder="Enter your Email" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Phone
+                                <input type="text" name="phone"  placeholder="Contact Number" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                D.O.B.
+                                <input type="date" name="dob" placeholder="date of birth" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Address
+                                <input type="text" name="address" placeholder="Address" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Gender
+                                <input type="radio" name="gender" class="mr-2">Male <input type="radio" name="gender" class="mr-2">Female
+                            </div>
+                            <div class="mb-3">
+                                Qualification
+                                <select name="qualification"  class="form-control">
+                                    <option value="">Qualification</option>
+                                    <option value="">12th in Mathematics</option>
+                                </select>
+                                
+                            </div>
+                            <div class="mb-3">
+                                Course
+                                <input type="text" readonly name="Course" value="B.tach." class="form-control">
+                            </div>
+                            <button class="btn btn-info">Submit</button>
+                        </form>
+    
+                    </div><!--modal body-->
+                </div><!--modal-content-->
+            </div><!--modal dialog end-->
+        </div><!--modal end-->
 
     </section>
     <!-- End Courses -->
