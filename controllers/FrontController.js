@@ -13,10 +13,11 @@ cloudinary.config({
 class FrontController{
     static home = async(req,res)=>{
         try{
-            const{name,image}= req.userData
+            const{name,image,email}= req.userData
             res.render("home",{
                 n:name,
-                i:image
+                i:image,
+                e:email
             })
 
             
@@ -144,13 +145,26 @@ class FrontController{
             if(user != null){
                 const isMatch = await bcrypt.compare(password,user.password)
                 if(isMatch){
-                 //token create
+                    if(user.role=="admin"){
+                        //token create
                  var token = jwt.sign({ID: user._id},'dkjfc98adfsdbf878bch') 
-                //  console.log(token) 
-                res.cookie('token',token) 
+                 //  console.log(token) 
+                 res.cookie('token',token) 
+ 
+                 //admin login
+                 res.redirect('/admin/deshboard')
 
-                //admin login
-                res.redirect('/home')
+                }
+                if(user.role== "user"){
+                    //token create
+                 var token = jwt.sign({ID: user._id},'dkjfc98adfsdbf878bch') 
+                 //  console.log(token) 
+                 res.cookie('token',token) 
+ 
+                 //admin login
+                 res.redirect('/home')
+                }
+                 
                 }else{
                     req.flash("error","email or password is not  vaild.")
                     res.redirect("/")

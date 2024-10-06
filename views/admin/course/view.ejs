@@ -1,5 +1,5 @@
-<%-include('./header.ejs')%>
-  <%-include('./sidebar.ejs')%>
+<%-include('../header.ejs')%>
+  <%-include('../sidebar.ejs')%>
 
 
 
@@ -10,7 +10,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
+              <h1 class="m-0">Course Display</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -28,9 +28,9 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addstudent">
+              <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addstudent">
                 Add Student
-              </button>
+              </button> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -40,34 +40,22 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                   
-                    <th>image</th>
-                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% d.forEach((item,index)=>{%>
+                
                     <tr>
                       <td>
-                        <%= index+1 %>
+                        <%= d._id %>
                       </td>
                       <td>
-                        <%= item.name %>
+                        <%= d.name %>
                       </td>
                       <td>
-                        <%= item.email %>
-                      </td>
-                     
-                      <td>
-                        <img src="<%= item.image.url %>" width="50px" alt="">
-                      </td>
-                      <td>
-                        <a href="/admin/viewUser/<%= item._id%>" class="btn btn-info">View</a>
-                        <a href="/admin/editUser/<%= item._id%>" class="btn btn-success">Edit</a>
-                        <a href="/admin/deleteUser/<%= item._id%>" class="btn btn-danger">Delete</a>
+                        <%= d.email %>
                       </td>
                     </tr>
-                    <% }) %>
+                
                 </tbody>
                 <tfoot>
                   <thead>
@@ -75,9 +63,6 @@
                       <th>Id</th>
                       <th>Name</th>
                       <th>Email</th>
-                     
-                      <th>Image</th>
-                      <th>Action</th>
                     </tr>
                   </thead>
                 </tfoot>
@@ -146,4 +131,4 @@
     </div>
     <!-- /.modal -->
 
-<%-include('./footer.ejs')%>
+<%-include('../footer.ejs')%>

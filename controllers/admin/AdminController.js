@@ -1,9 +1,11 @@
 const UserModuls = require('../../moduls/user')
+const CourseModel = require('../../moduls/course')
 
 class AdminController {
     static deshboard = async (req, res) => {
         try {
-            res.render('admin/deshboard')
+            const{name,image}=req.userData
+            res.render('admin/deshboard',{n:name,i:image})
         } catch (error) {
             console.log(error)
         }
@@ -11,9 +13,10 @@ class AdminController {
 
     static display = async (req, res) => {
         try {
+            const{name,image}=req.userData
             const data = await UserModuls.find()
             // console.log(data)
-            res.render('admin/display', { d: data });
+            res.render('admin/display', { d: data,n:name,i:image });
         } catch (error) {
             console.log(error)
         }
@@ -21,6 +24,7 @@ class AdminController {
 
     static adduser = async (req, res) => {
         try {
+            const{name,image}=req.userData
             res.render('admin/adduser')
         } catch (error) {
             console.log(error)
@@ -28,28 +32,31 @@ class AdminController {
     }
     static viewUser = async (req, res) => {
         try {
+            const{name,image}=req.userData
             const id = req.params.id;
             // console.log(id)
             const data = await UserModuls.findById(id)
             // console.log(data)
-            res.render('admin/viewUser', { d: data });
+            res.render('admin/viewUser', { d: data,n:name,i:image });
         } catch (error) {
             console.log(error)
         }
     }
     static editUser = async (req, res) => {
         try {
+            const{name,image}=req.userData
             const id = req.params.id;
             // console.log(id)
             const data = await UserModuls.findById(id)
             //console.log(data)
-            res.render('admin/editUser', { d: data });
+            res.render('admin/editUser', { d: data,n:name,i:image });
         } catch (error) {
             console.log(error)
         }
     }
     static updateUser = async (req, res) => {
         try {
+            const{name,image}=req.userData
             const id = req.params.id;
             const { n, e, p } = req.body
             // console.log(id)
@@ -58,7 +65,7 @@ class AdminController {
                 email: e,
                 password: p
             })
-            res.redirect("/admin/StudentDisplay") //route
+            res.redirect("/admin/StudentDisplay",{n:name,i:image}) //route
 
         } catch (error) {
             console.log(error)
@@ -66,11 +73,12 @@ class AdminController {
     }
     static deleteUser = async (req, res) => {
         try {
+            const{name,image}=req.userData
             const id = req.params.id;
             const { n, e, p } = req.body
             // console.log(id)
             const data = await UserModuls.findByIdAndDelete(id)
-            res.redirect("/admin/StudentDisplay") //route
+            res.redirect("/admin/StudentDisplay",{n:name,i:image}) //route
 
         } catch (error) {
             console.log(error)
@@ -78,6 +86,7 @@ class AdminController {
     }
     static userInsert =async(req,res)=>{
         try{
+            const{name,image}=req.userData
             //res.send("contact page")
             console.log(req.files)
             // console.log(req.body) 
@@ -100,6 +109,30 @@ class AdminController {
 
         }catch(error)
         {
+            console.log(error)
+        }
+    }
+
+    /* course display */ 
+    static courseDisplay = async (req, res) => {
+        try {
+            const{name,image}=req.userData
+            const data = await CourseModel.find()
+            // console.log(data)
+            res.render('admin/course/display', { d: data,n:name,i:image });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    static courseView = async (req, res) => {
+        try {
+            const{name,image}=req.userData
+            const id = req.params.id;
+            // console.log(id)
+            const data = await CourseModel.findById(id)
+            // console.log(data)
+            res.render('admin/course/view',{ d: data ,n:name,i:image });
+        } catch (error) {
             console.log(error)
         }
     }
