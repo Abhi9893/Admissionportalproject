@@ -1,0 +1,87 @@
+<%-include('../header.ejs')%>
+  <%-include('../sidebar.ejs')%>
+
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper" style="height: 200%; margin-top: 5%;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Register Student</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <!-- <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol> -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-header">
+            <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addstudent">
+              Add Student
+            </button> -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="modal-body">
+                <form action="/course/Edit/<%=d._id%>" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        Name
+                        <input type="text" name="name" value="<%= d.name%>" placeholder="Enter Your Name" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        Email
+                        <input type="text" name="email" value="<%= d.email%>" placeholder="Enter your Email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        Phone
+                        <input type="text" name="phone" value="<%= d.phone%>"  placeholder="Contact Number" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        D.O.B.
+                        <input type="date" name="dob" value="<%= d.dob%>" placeholder="date of birth" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        Address
+                        <input type="text" name="address" value="<%= d.address%>" placeholder="Address" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        Gender
+                        <input type="radio" name="gender"  class="mr-2">Male <input type="radio" name="gender" class="mr-2">Female
+                    </div>
+                    <div class="mb-3">
+                        Qualification
+                        <select name="qualification"  class="form-control">
+                            <option value="">Qualification</option>
+                            <option value="">12th in Mathematics</option>
+                        </select>
+                        
+                    </div>
+                    <div class="mb-3">
+                        Course
+                        <input type="text" readonly name="Course" value="B.tach." class="form-control">
+                    </div>
+                    <button class="btn btn-info">Submit</button>
+                </form>
+
+            </div><!--modal body-->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<%-include('../footer.ejs')%>

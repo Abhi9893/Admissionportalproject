@@ -1,5 +1,7 @@
 const UserModuls = require('../../moduls/user')
 const CourseModel = require('../../moduls/course')
+const cloudinary = require('cloudinary')
+const nodemailer = require('nodemailer')
 
 class AdminController {
     static deshboard = async (req, res) => {
@@ -136,6 +138,56 @@ class AdminController {
             console.log(error)
         }
     }
+    static courseEdit = async (req, res) => {
+        try {
+            const{name,image}=req.userData
+            const id = req.params.id;
+            // console.log(id)
+            const data = await UserModuls.findById(id)
+            //console.log(data)
+            res.render('admin/course/Edit', { d: data,n:name,i:image });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    static statusUpdate = async (req,res) =>{
+        try {
+            const{name,email,status,comment} = req.body
+            const id = req.params.id
+            const data = await CourseModel.findByIdAndUpdate(id,{
+                status: status,
+                comment: comment
+            })
+            //console.log(data)
+            this.sendEmail(name,email,status,comment)
+            res.redirect("/admin/courseDisplay")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    static sendEmail = async (name,email,status,comment)=>{
+        // console.log(name,email,status,comment)
+        //connect with the smtp server
+    
+        let transporter = await nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+    
+            auth:{
+                user: "patsariya.abhi@gmail.com ",
+                pass: "gdjrtxvgmmewdmic",
+            },
+        });
+        let info = await transporter.sendMail({
+            from: "test@gamil.com", //sender address
+            to: email, //list of receivers
+            subject: `course ${course}`, //subject line
+            text: "hello", //plain text body 
+            html: `<b>${course}</b> course <b>${course}</b> insert successful ! <br>
+            <b> comment from Admin </b> ${comment}`, //html body
+        });
+    };
 
 }
 module.exports = AdminController

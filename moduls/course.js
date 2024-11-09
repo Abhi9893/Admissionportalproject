@@ -29,7 +29,7 @@ const CourseSchema = new mongoose.Schema({
         type:String,
         Required:true
     },
-    coures:{
+    course:{
         type:String,
         Required:true
     },

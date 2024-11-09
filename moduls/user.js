@@ -23,6 +23,13 @@ const UserSchema = mongoose.Schema({
             request:true,
         }
     },
+    token:{
+        type:String,
+    },
+    is_verified:{
+        type:Number,
+        default:0
+    },
     role:{
         type:String,
         default:'user'

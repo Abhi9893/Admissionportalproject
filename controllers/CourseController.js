@@ -1,4 +1,6 @@
 const courseModel = require('../moduls/course')
+const nodemailer = require('nodemailer')
+
 class CourseController{
 
 static courseInsert = async(req,res)=>{
@@ -16,7 +18,8 @@ static courseInsert = async(req,res)=>{
             course:course,
             user_id:id
         })
-        res.redirect('/course/display')  
+        res.redirect('/course/display') 
+        this.sendEmail(name,email,course) 
         await result.save() 
     } catch (error) {
         console.log(error)
@@ -24,9 +27,9 @@ static courseInsert = async(req,res)=>{
 }
 static courseDisplay = async(req,res)=>{
     try {
-        const{id,name,image} = req.userData
+        const{id,name,image} = req.userData 
 
-        const data = await courseModel.find()
+        const data = await courseModel.find({user_id:id})
         res.render('course/Display',{d:data, n:name, i:image})
     } catch (error) {
         console.log(error)
@@ -86,5 +89,26 @@ static courseDelete = async(req,res)=>{
         console.log(error)
     }
 }
+static sendEmail = async (name,email,course)=>{
+    console.log(name,email,course)
+    //connect with the smtp server
+
+    let transporter = await nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+
+        auth:{
+            user: "patsariya.abhi@gmail.com ",
+            pass: "gdjrtxvgmmewdmic",
+        },
+    });
+    let info = await transporter.sendMail({
+        from: "test@gamil.com", //sender address
+        to: email, //list of receivers
+        subject: `course ${course}`, //subject line
+        text: "hello", //plain text body 
+        html: `<b>${course}</b> course <b>${course}</b> insert successful ! <br>`, //html body
+    });
+};
 }
 module.exports= CourseController

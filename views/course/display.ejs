@@ -1,7 +1,7 @@
 <%-include('../layout/header.ejs')%>
 
- <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper" style="height: 200%; margin-top: 5%;">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="height: 200%; margin-top: 5%;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -38,6 +38,9 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>course</th>
+                  <th>status</th>
+                  <th>comment</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -56,7 +59,15 @@
                     <td>
                       <%= item.phone %>
                     </td>
-                    
+                    <td>
+                      <%= item.course %>
+                    </td>
+                    <td class="btn btn-info">
+                      <%= item.status %>
+                    </td>
+                    <td>
+                      <%= item.comment %>
+                    </td>
                     <td>
                       <a href="/course/view/<%=item._id%>" class="btn btn-info btn-sm ">View</a>
                       <a href="/course/edit/<%=item._id%>" class="btn btn-success btn-sm">Edit</a>
@@ -72,6 +83,9 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>course</th>
+                    <th>status</th>
+                    <th>comment</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -87,8 +101,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-  
-  
 
 
-<%-include('../layout/footer.ejs')%>
+
+
+  <%-include('../layout/footer.ejs')%>

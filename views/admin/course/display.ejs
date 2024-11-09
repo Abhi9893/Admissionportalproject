@@ -40,8 +40,10 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                   
-                   
+                    <th>course</th>
+                    <th>status</th>
+                    <th>comment</th>
+                    <th></th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -57,7 +59,24 @@
                       <td>
                         <%= item.email %>
                       </td>
-                     
+                      <td>
+                        <%= item.course %>
+                      </td>
+                      <td>
+                        <%= item.status %>
+                      </td>
+                      <td>
+                        <%= item.comment %>
+                      </td>
+                      <td>
+                        <form action="/admin/statusUpdate/<%= item._id%>" method="post">
+                          <input type="hidden" name="name" value="<%= item.name %>">
+                          <input type="hidden" name="name" value="<%= item.email %>">
+                          <textarea name="comment" class="form-control mb-2"></textarea>
+                          <button name="status" value="approved" class="btn btn-info">Approved</button>
+                          <button name="status" value="rejected" class="btn btn-danger">Rejected</button>
+                        </form>
+                      </td>
                      
                       <td>
                         <a href="/admin/courseView/<%= item._id%>" class="btn btn-info">View</a>
@@ -73,8 +92,10 @@
                       <th>Id</th>
                       <th>Name</th>
                       <th>Email</th>
-                     
-                      
+                      <th>course</th>
+                      <th>status</th>
+                      <th>comment</th>
+                      <th></th>
                       <th>Action</th>
                     </tr>
                   </thead>

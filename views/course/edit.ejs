@@ -55,13 +55,14 @@
                     </div>
                     <div class="mb-3">
                         Gender
-                        <input type="radio" name="gender"  class="mr-2">Male <input type="radio" name="gender" class="mr-2">Female
+                        <input type="radio" name="gender" value="male" <%= d.gender=='male'?'checked':'' %>>Male <input type="radio" name="gender" value="male" <%= d.gender=='female'?'checked':'' %>>Female
                     </div>
                     <div class="mb-3">
                         Qualification
                         <select name="qualification"  class="form-control">
                             <option value="">Qualification</option>
-                            <option value="">12th in Mathematics</option>
+                            <option value="10" <%= d.qualification=='10'?'selected':''%>>10th</option>
+                            <option value="12" <%= d.qualification=='12'?'selected':''%>>12th in Mathematics</option>
                         </select>
                         
                     </div>

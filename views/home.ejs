@@ -93,7 +93,14 @@
                             <div class="card-body text-center">
                                 <h2>B.Tech</h2>
                                 <p class="card-text">B.Tech is a professional undergraduate engineering degree</p>
-                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
+                                <% if(Btach){ %>
+                                    <a href="/course/Display" class="btn btn-info">Course Display</a>
+                                <% }else{ %>
+                                        <button type="button" class="btn btn-primary" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
+
+                                <% } %>
+
+                                
                             </div>
                         </div>
                     </div>
@@ -105,7 +112,12 @@
                             <div class="card-body text-center">
                                 <h2>BCA</h2>
                                 <p class="card-text">BCA is a three-year Bachelor's Degree in Computer Application</p>
-                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
+                                <% if(bca){ %>
+                                    <a href="/course/Display" class="btn btn-info">Course Display</a>
+                                <% }else{ %>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bca">Register</button>
+
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -118,7 +130,12 @@
                                 <h2>MCA</h2>
                                 <p class="card-text">MCA is a professional post-graduation degree in Computer
                                     Application</p>
-                                <button type="button" class="btn btn-info" data-bs-target="#aa" data-bs-toggle="modal">Register</button>
+                                    <% if(mca){ %>
+                                        <a href="/course/Display" class="btn btn-info">Course Display</a>
+                                    <% }else{ %>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mca">Register</button>
+    
+                                    <% } %>
                             </div>
                         </div>
                     </div>
@@ -164,13 +181,126 @@
                                 Qualification
                                 <select name="qualification"  class="form-control">
                                     <option value="">Qualification</option>
+                                    <option value="">10th</option>
                                     <option value="">12th in Mathematics</option>
                                 </select>
                                 
                             </div>
                             <div class="mb-3">
                                 Course
-                                <input type="text" readonly name="Course" value="B.tach." class="form-control">
+                                <input type="text" readonly name="course" value="Btach" class="form-control">
+                            </div>
+                            <button class="btn btn-info">Submit</button>
+                        </form>
+    
+                    </div><!--modal body-->
+                </div><!--modal-content-->
+            </div><!--modal dialog end-->
+        </div><!--modal end-->
+
+  <!--bca model-->
+        <div class="modal fade" id="bca">
+            <div class="modal-dialog mode-sm"> <!--modal-xl,sm,lg-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="model-title">login form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    
+                    </div><!--modal header end-->
+                    <div class="modal-body">
+                        <form action="/courseInsert" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                Name
+                                <input type="text" name="name" value="<%= n%>" placeholder="Enter Your Name" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Email
+                                <input type="text" name="email" value="<%= e%>" placeholder="Enter your Email" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Phone
+                                <input type="text" name="phone"  placeholder="Contact Number" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                D.O.B.
+                                <input type="date" name="dob" placeholder="date of birth" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Address
+                                <input type="text" name="address" placeholder="Address" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Gender
+                                <input type="radio" name="gender" class="mr-2">Male <input type="radio" name="gender" class="mr-2">Female
+                            </div>
+                            <div class="mb-3">
+                                Qualification
+                                <select name="qualification"  class="form-control">
+                                    <option value="">Qualification</option>
+                                    <option value="">10th</option>
+                                    <option value="">12th in Mathematics</option>
+                                </select>
+                                
+                            </div>
+                            <div class="mb-3">
+                                Course
+                                <input type="text" readonly name="Course" value="bca" class="form-control">
+                            </div>
+                            <button class="btn btn-info">Submit</button>
+                        </form>
+    
+                    </div><!--modal body-->
+                </div><!--modal-content-->
+            </div><!--modal dialog end-->
+        </div><!--modal end-->
+
+  <!-- mca model -->
+        <div class="modal fade" id="mca">
+            <div class="modal-dialog mode-sm"> <!--modal-xl,sm,lg-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="model-title">login form</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    
+                    </div><!--modal header end-->
+                    <div class="modal-body">
+                        <form action="/courseInsert" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                Name
+                                <input type="text" name="name" value="<%= n%>" placeholder="Enter Your Name" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Email
+                                <input type="text" name="email" value="<%= e%>" placeholder="Enter your Email" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Phone
+                                <input type="text" name="phone"  placeholder="Contact Number" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                D.O.B.
+                                <input type="date" name="dob" placeholder="date of birth" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Address
+                                <input type="text" name="address" placeholder="Address" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                Gender
+                                <input type="radio" name="gender" class="mr-2">Male <input type="radio" name="gender" class="mr-2">Female
+                            </div>
+                            <div class="mb-3">
+                                Qualification
+                                <select name="qualification"  class="form-control">
+                                    <option value="">Qualification</option>
+                                    <option value="">10th</option>
+                                    <option value="">12th in Mathematics</option>
+                                </select>
+                                
+                            </div>
+                            <div class="mb-3">
+                                Course
+                                <input type="text" readonly name="Course" value="mca" class="form-control">
                             </div>
                             <button class="btn btn-info">Submit</button>
                         </form>
